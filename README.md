@@ -21,9 +21,9 @@ MOVING IMAGE: Utterback and Achituv
 
 
 Day 1 
-reading: 
-https://www.atariarchives.org/artist/sec5.php
-randomness: 
-https://medium.freecodecamp.org/a-brief-history-of-random-numbers-9498737f5b6c
-http://www.servinglibrary.org/journal/3/a-million-random-digits
+- reading: 
+-- https://www.atariarchives.org/artist/sec5.php
+- randomness: 
+-- https://medium.freecodecamp.org/a-brief-history-of-random-numbers-9498737f5b6c
+-- http://www.servinglibrary.org/journal/3/a-million-random-digits
 
