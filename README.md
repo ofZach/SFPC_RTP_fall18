@@ -2,8 +2,8 @@ Each week, we take a look at a different famous media artworks that have been ma
 
 We will also be exploring the history of media art practice. Reading may be assigned from:
 
-When the Machine Made Art The Troubled History of Computer Art
-10 Print
+* When the Machine Made Art The Troubled History of Computer Art
+* 10 Print
 
 Students will be encouraged through this class to begin a practice of generative visual sketching in whatever framework they feel comfortable in. Class examples will be prepared in openFrameworks.
 
