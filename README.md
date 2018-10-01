@@ -27,3 +27,8 @@ Here's a general break down of the 8 weeks (might be rearranged based on interes
 * other readings that maybe interesting (about randomness) 
   * https://medium.freecodecamp.org/a-brief-history-of-random-numbers-9498737f5b6c
   * http://www.servinglibrary.org/journal/3/a-million-random-digits
+
+### Day 2
+* reading
+  * Articulate Light http://www.vasulka.org/archive/4-20a/Articulated(6013).pdf
+  
