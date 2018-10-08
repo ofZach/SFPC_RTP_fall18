@@ -3,8 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+    img.load("zr.jpeg");
     
-    font.load("helvetica.otf", 100, true, true, true);
 }
 
 //--------------------------------------------------------------
@@ -17,42 +17,16 @@ void ofApp::draw(){
 
     ofBackground(0);
     
+    img.draw(img.getWidth(),0);
     
-//    //ofSetColor(80);
-//    //font.drawString("hello", 100,100);
-//
-////    ofDrawLine(100,100,200,100);
-////    ofRectangle r = font.getStringBoundingBox("hello", 100, 100);
-////    ofNoFill();
-////    ofDrawRectangle(r);
-//
-//    ofTranslate(100,100);
-//    vector < ofPath > paths = font.getStringAsPoints("hello");
-//    for (int i = 0; i < paths.size(); i++){
-//
-//        vector < ofPolyline > lines = paths[i].getOutline();
-//        //cout << lines.size() << endl;
-//
-//        ofSetColor(255);
-//        for (int j = 0; j < lines.size(); j++){
-//            ofPolyline lineTemp = lines[j];
-//            lineTemp = lineTemp.getResampledBySpacing(1);
-//            lineTemp = lineTemp.getSmoothed( MAX(0, mouseX));
-////            for (int k = 0; k < lineTemp.size(); k++){
-////                ofDrawCircle(lineTemp[k], 2);
-////            }
-//            lineTemp.draw();
-//        }
-//    }
-    
-    
-    ofPolyline line;
-    for (int i = 0; i < 1000; i++){
-        float x = ofMap(i, 0, 1000, 0, ofGetWidth());
-        float y = ofGetHeight()/2 + 100 * ofSignedNoise(i*0.003 + mouseX*0.01, mouseY*0.01);
-        line.addVertex(x,y);
+    for (int i = 0; i < img.getWidth(); i += 10){
+        for (int j = 0; j < img.getHeight(); j+=10){
+            ofColor pixelColor = img.getColor(i,j);
+            float brightness = pixelColor.getBrightness();
+            float radius = ofMap(brightness, 0, 255, 2, 3.6);
+            ofDrawCircle(i,j, radius);
+        }
     }
-    line.draw();
 }
 
 //--------------------------------------------------------------

@@ -20,17 +20,14 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-    ofEasyCam cam;
-    ofNode a;
-    ofNode b;
-    ofNode c;
-    ofPolyline line;
     
-    ofNode a2;
-    ofNode b2;
-    ofNode c2;
-    ofPolyline line2;
+        void dilateImage(ofImage & src, ofImage & dst);
     
-    float time = 0;
+        ofImage imgA;
+        ofImage imgB;
     
+    
+    
+    
+		
 };
