@@ -30,5 +30,10 @@ Here's a general break down of the 8 weeks (might be rearranged based on interes
 
 ### Day 2
 * reading
-  * Articulate Light http://www.vasulka.org/archive/4-20a/Articulated(6013).pdf
+  * Articulated Light http://www.vasulka.org/archive/4-20a/Articulated(6013).pdf
+  
+### Day 3
+* reading
+  * Maeda interview from Designing Interactions http://www.i-n-t-e-r-f-a-c-e.org/MEDIA/PDF/Designing-Interactions.pdf  (612-625) 
+  
   
