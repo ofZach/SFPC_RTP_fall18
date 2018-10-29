@@ -1,0 +1,12 @@
+<group>
+	<settings>
+		<threshold>154</threshold>
+		<speed>1</speed>
+		<medianFilterAmount>5</medianFilterAmount>
+	</settings>
+<group/>
+<kinectV2_013751441647>
+		<minDistance>918.367</minDistance>
+		<maxDistance>2448.98</maxDistance>
+	</kinectV2_013751441647>
+</group>
