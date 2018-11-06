@@ -10,6 +10,7 @@ public:
     void setup();
     void update();
     void draw();
+    void initdraw(ofFbo &fbo);
     float* data;
     
     ofVec2f currentpt[100], pastpt[100];
@@ -19,4 +20,6 @@ public:
     ofShader datashader,datashader2,shader;
     ofShader blurx;
     ofShader blury;
+    float timer=0;
+    
 };

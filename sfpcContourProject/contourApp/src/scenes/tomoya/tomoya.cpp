@@ -1,7 +1,20 @@
 
 
 #include "tomoya.h"
-
+void tomoya::initdraw(ofFbo &fbo){
+    fbo.begin();
+    bool tmpcolor=true;
+    int lenx = 19;
+    int leny = 19;
+    for(int i =0;i<lenx;i++){
+        for(int j =0;j<leny;j++){
+            int b = (tmpcolor)? 0:255;
+            ofSetColor(b);
+            ofDrawRectangle(ofGetWidth()*i/lenx, ofGetHeight()*j/leny, ofGetWidth()/lenx, ofGetHeight()/leny);
+            tmpcolor = !tmpcolor;
+        }}
+    fbo.end();
+}
 //---------------------------------------------------------------
 void tomoya::setup(){
     data = new float[100*4*2];
@@ -18,18 +31,7 @@ void tomoya::setup(){
     blury.load("tomoya_shader/ShaderBlurY");
     
     
-    main.begin();
-    bool tmpcolor=true;
-    int lenx = 19;
-    int leny = 19;
-    for(int i =0;i<lenx;i++){
-            for(int j =0;j<leny;j++){
-            int b = (tmpcolor)? 0:255;
-        ofSetColor(b);
-        ofDrawRectangle(ofGetWidth()*i/lenx, ofGetHeight()*j/leny, ofGetWidth()/lenx, ofGetHeight()/leny);
-                tmpcolor = !tmpcolor;
-            }}
-    main.end();
+    initdraw(main);
     datafbo.begin();
     ofSetColor(0);
     ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
@@ -47,8 +49,12 @@ void tomoya::update(){
 
     //the info you want is here:
 //    CT->resampleSmoothed.
+    if(timer>90.){ // reset in each 90sec
+        initdraw(main);
+        timer=0;
+    }
     currentframe = CT->prevFrame.getResampledByCount(100);
-    while (currentframe .size() < 100){
+    while (currentframe.size() < 100){
         currentframe.getVertices().push_back(currentframe[currentframe.size()-1]);
     }
     if(pastframe.size() <currentframe.size()){
@@ -93,16 +99,14 @@ void tomoya::update(){
     main.draw(0,0);
     shader.end();
     main.end();
-    
+    timer+=1/30.;
 }
 
 
 //---------------------------------------------------------------
 void tomoya::draw(){
 
-    ofDrawBitmapString("Tomoya Scene", 10, 10);
-//    std::string mystr = "num of partices: " + std::to_string(CT->resampleSmoothed.size());
-//    ofDrawBitmapString(mystr, 10, 20);
+
     if(ofGetMouseX()<(ofGetWidth()/3)){
     main.draw(0,0);
     }else if(ofGetMouseX()>(ofGetWidth()/3) && ofGetMouseX()<(ofGetWidth()*2/3)){
@@ -110,14 +114,13 @@ void tomoya::draw(){
     }else{
          datafbo.draw(0,0);
     }
-    
+    ofSetColor(125);
+    ofDrawBitmapString("Tomoya Scene", 10, 10);
+    std::string mystr = "to reset: " + std::to_string(90-timer);
+    ofDrawBitmapString(mystr, 10, 20);
 //    for(int i = 0;i< currentframe.size(); i++){
 //        ofVec2f p1 =currentframe[i];
-//
 //                ofDrawCircle(p1, 10);
-//
 //    }
-    
-//    CT->resampleSmoothed.draw();
     pastframe =currentframe;
  }
