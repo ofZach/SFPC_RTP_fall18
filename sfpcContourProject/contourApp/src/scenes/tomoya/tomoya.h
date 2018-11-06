@@ -15,8 +15,8 @@ public:
     ofVec2f currentpt[100], pastpt[100];
     ofPolyline currentframe, pastframe;
     ofFbo main;
-    ofFbo datafbo;
-    ofShader datashader,shader;
+    ofFbo datafbo,datafbo2;
+    ofShader datashader,datashader2,shader;
     ofShader blurx;
     ofShader blury;
 };

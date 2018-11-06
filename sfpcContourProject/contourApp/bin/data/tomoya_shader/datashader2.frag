@@ -2,6 +2,7 @@
 
 //uniform vec2 u_mouse;
 uniform sampler2DRect tex0;
+uniform sampler2DRect accel;
 #define MAX_ITEMS 100
 uniform vec2 current[MAX_ITEMS];
 uniform vec2 past[MAX_ITEMS];
@@ -95,33 +96,32 @@ float noise(vec3 p){
 }
 
 void main() {
+
     vec2 st = gl_FragCoord.xy;
-    vec2 normst = gl_FragCoord.xy/640;
-    //vec2 center = resolution/2.0;
-    // Scale the coordinate system to see
-    // some noise in action
-    //    vec2 pos = vec2(st*7.);
-    float theta = 1.0;
-    // Use the noise function
+    
     vec4 color = vec4(0., 0., 0., 1.0);
+    vec4 color2 = vec4(0., 0., 0., 1.0);
+//
+//    for (int i =0; i<100; i+=1) {
+//        vec2 pos  = current[i];
+//        vec2 pos2 = past[i];
+//        vec2 vel = (pos2-pos)*0.06*scale;
+//        float poscolormap = max(0,1-0.01*length(st-pos.xy));
+//        color.r += poscolormap*vel.x;
+//        color.g += poscolormap*vel.y;
+//    }
+//
+    vec2 vel = texture(accel,st).rg ;//use rg to xy;
     
-    for (int i =0; i<100; i+=1) {
-        vec2 pos  = current[i];
-        vec2 pos2 = past[i];
-        vec2 vel = (pos2-pos)*0.06*scale;
-        float poscolormap = max(0,1-0.01*length(st-pos.xy));
-        color.r += poscolormap*vel.x;
-        color.g += poscolormap*vel.y;
-    }
-    //    vec2 center = resolution/2.0;
+    color2.r  = texture(tex0,st+vel*2.00).r;
+    color2.g  = texture(tex0,st+vel*2.05).g;
+    color2.b  = texture(tex0,st+vel*2.1).b;
     
-    //    vec3 pos  = texture(data,vec2(12,time)).rgb; // x is pos,y is time
-    //    vec3 pos2 = texture(data,vec2(12,mod(time+1,30))).rgb; // x is pos,y is time
-    //    vec3 vel = pos2-pos;
-    //    color.r += scale*(10-length(st-pos.xy));
-    //    color.g += scale*(10-length(st-pos.xy));
-    vec4 outc = (0.11)*color+0.9*texture(tex0,st);
-    outputColor = vec4(outc.rgb,1.0);
+    color.rgb = texture(accel,st).rgb;
+    
+    vec3 outc = color.rgb*0.14+0.9*color2.rgb;
+    outputColor =vec4(outc.rgb,1.0);
+
 }
 
 

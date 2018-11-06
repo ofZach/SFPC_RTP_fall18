@@ -92,6 +92,20 @@ float noise(vec3 p){
     return o4.y * d.y + o4.x * (1.0 - d.y);
 }
 
+float mysigmoid(float x){
+    float res;
+    if(x<0.5){
+        res = x*0.8;
+    }else{
+        res = x*0.8+0.2;
+    }
+    return res;
+}
+
+vec3 mysigmoid(vec3 v){
+    return vec3( mysigmoid(v.x), mysigmoid(v.y), mysigmoid(v.z));
+}
+
 void main() {
     vec2 st = gl_FragCoord.xy;
 //vec2 center = resolution/2.0;
@@ -107,11 +121,8 @@ void main() {
     color.r  = texture(tex0,st+velocity*1.00).r;
     color.g  = texture(tex0,st+velocity*1.05).g;
     color.b  = texture(tex0,st+velocity*1.1).b;
-    
-    vec4 texdiff=  texture(tex0,st+vec2(1,0)) - texture(tex0,st-vec2(1,0)) +
-    texture(tex0,st+vec2(0,1)) - texture(tex0,st-vec2(0,1));
-    
-    vec4 scaleit = mod(1-velocity.x+velocity.y,1)*color;
+    color.rgb = 0.99*color.rgb+0.01*mysigmoid(color.rgb);
+
     float amnt=0;
     outputColor = 0.9*color+0.1*texture(tex0,st);
 }
